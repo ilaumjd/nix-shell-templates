@@ -1,12 +1,20 @@
-
-{ pkgs, extraBuildInputs ? [], myPython ? pkgs.python3, extraLibPackages ? [], pythonWithPkgs ? myPython }:
+{
+  pkgs,
+  extraBuildInputs ? [ ],
+  myPython ? pkgs.python3,
+  extraLibPackages ? [ ],
+  pythonWithPkgs ? myPython,
+}:
 
 let
-  buildInputs = with pkgs; [
-    clang
-    llvmPackages_16.bintools
-    rustup
-  ] ++ extraBuildInputs;
+  buildInputs =
+    with pkgs;
+    [
+      clang
+      llvmPackages_16.bintools
+      rustup
+    ]
+    ++ extraBuildInputs;
 
   lib-path = with pkgs; lib.makeLibraryPath buildInputs;
 
@@ -40,6 +48,5 @@ let
       export PYTHONPATH=$PYTHONPATH:`pwd`/$VENV/${myPython.sitePackages}/
     '';
   };
-
 in
 shell

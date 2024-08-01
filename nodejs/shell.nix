@@ -1,7 +1,7 @@
-{ pkgs ? import (fetchTarball {
-  url = "https://github.com/NixOS/nixpkgs/archive/ab82a9612aa45284d4adf69ee81871a389669a9e.tar.gz";
-}) {} }:
+{
+  pkgs ? import (fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/dce8fc727dc2891628e4f878bb18af643b7b255d.tar.gz";
+  }) { },
+}:
 
-pkgs.mkShell {
-  buildInputs = [ pkgs.nodejs_20 ];
-}
+pkgs.mkShell { buildInputs = [ pkgs.nodejs ]; }
